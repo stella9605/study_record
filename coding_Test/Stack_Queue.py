@@ -122,7 +122,7 @@ def solution(priorities, location) :
 
 def solution(bridge_length, weight, truck_weights):
     
-    bridge = [0] * bridge_length
+    bridge = [0] * bridge_length      # 항상 배열의 전체 길이를 파악하는 것이 중요함
     time = 0
     
     while bridge : 
