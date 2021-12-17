@@ -107,4 +107,31 @@ def solution(priorities, location) :
     return answer
 
 
-####Stack 
+# 다리를 지나는 트럭 
+
+# bridge_length 다리의 길이수, 1 키로는 1초걸림, 다리 길이가 100 이면 1키로 짜리 트럭이 건너는데 100초걸림 + 시작시간 1 = 101초 
+# weight 다리가 견딜 수 있는 무게
+# truck_weights 트럭별 무게
+
+# weight > truck_weights[0] + truck_weights[1] 이면 bridge_length 은 truck_weights의 수만큼 카운트 된다. 
+
+# weight > truck_weights
+# bridge_length 트럭이 건너는데 걸리는 시간
+
+
+
+def solution(bridge_length, weight, truck_weights):
+    
+    bridge = [0] * bridge_length
+    time = 0
+    
+    while bridge : 
+        time += 1                       # 다리를 건널 때 마다 시간을 추가해 주어야 한다. 몇초 걸리는지 언제 트럭이 다리를 건너는지 알아야할것
+        bridge.pop(0)
+        
+        if truck_weights:
+            if truck_weights[0] + sum(bridge) <= weight :   # 다리위의 트럭의 총합 무게가 다리가 견뎌야 하는 무게보다 작아야됨. 
+                bridge.append(truck_weights.pop(0))         # 다리를 건넌 트럭은 빼야됨
+            else :
+                bridge.append(0)                            # 다리를 안건넜을시 다리위에 있다고 남겨놓음
+    return time
